@@ -1,536 +1,914 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Sam Rithisen — Data Engineer & BI Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#060810;--bg1:#0b0f1a;--bg2:#111827;--bg3:#1a2235;
-  --border:rgba(148,163,184,.1);--border2:rgba(148,163,184,.18);
-  --cyan:#22d3ee;--cyan2:#06b6d4;--cyan3:#67e8f9;
-  --violet:#8b5cf6;--violet2:#7c3aed;
-  --amber:#f59e0b;--green:#10b981;--rose:#f43f5e;
-  --text:#f1f5f9;--text2:#94a3b8;--text3:#475569;
-  --ff:'Space Grotesk',sans-serif;--fm:'JetBrains Mono',monospace;
-  --r:10px;--r2:16px;
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--ff);font-size:16px;line-height:1.7;overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sam Rithisen | Data Engineer & BI Developer</title>
 
-/* CANVAS BG */
-#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(6,8,16,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-brand{font-family:var(--fm);font-size:.9rem;font-weight:500;color:var(--cyan);text-decoration:none;letter-spacing:.04em}
-.nav-links{display:flex;align-items:center;gap:2rem}
-.nav-links a{font-family:var(--fm);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:var(--cyan)}
-.nav-dl{font-family:var(--fm);font-size:.72rem;letter-spacing:.06em;color:var(--bg);background:var(--cyan);padding:7px 18px;border-radius:6px;text-decoration:none;font-weight:600;transition:opacity .2s}
-.nav-dl:hover{opacity:.85}
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-soft: #0b1020;
+      --card: rgba(15, 23, 42, 0.72);
+      --card-strong: rgba(15, 23, 42, 0.95);
+      --line: rgba(148, 163, 184, 0.16);
+      --line-strong: rgba(148, 163, 184, 0.28);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --muted2: #64748b;
+      --cyan: #22d3ee;
+      --blue: #38bdf8;
+      --violet: #8b5cf6;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --danger: #fb7185;
+      --shadow: 0 24px 80px rgba(2, 6, 23, 0.55);
+      --radius: 22px;
+      --mono: "JetBrains Mono", monospace;
+      --sans: "Inter", system-ui, sans-serif;
+    }
 
-/* SECTIONS */
-.section{position:relative;z-index:1;padding:6rem clamp(1.5rem,7vw,5rem)}
-.section-alt{background:rgba(11,15,26,.6)}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.16), transparent 32%),
+        linear-gradient(180deg, #050814 0%, #070b18 45%, #050814 100%);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-/* EYEBROW */
-.eyebrow{font-family:var(--fm);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);display:inline-flex;align-items:center;gap:8px;margin-bottom:1.2rem}
-.eyebrow::before{content:'';width:24px;height:1px;background:var(--cyan)}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+      z-index: 0;
+    }
 
-/* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px}
-.hero-wrap{display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:center;width:100%;max-width:1200px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.72rem;color:var(--green);border:1px solid rgba(16,185,129,.25);background:rgba(16,185,129,.07);padding:5px 14px;border-radius:999px;margin-bottom:1.5rem}
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:700;line-height:1.0;letter-spacing:-.03em;margin-bottom:.6rem}
-.hero-h1 .line2{color:var(--cyan)}
-.hero-sub{font-size:1.1rem;color:var(--text2);margin-bottom:1rem;font-weight:300;letter-spacing:.01em}
-.hero-desc{font-size:.95rem;color:var(--text3);line-height:1.85;margin-bottom:2.5rem;max-width:480px}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-a{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.8rem;font-weight:600;letter-spacing:.04em;background:var(--cyan);color:var(--bg);padding:12px 26px;border-radius:var(--r);text-decoration:none;transition:transform .15s,opacity .15s}
-.btn-a:hover{transform:translateY(-2px);opacity:.9}
-.btn-b{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.8rem;font-weight:500;letter-spacing:.04em;color:var(--text);border:1px solid var(--border2);padding:12px 26px;border-radius:var(--r);text-decoration:none;transition:border-color .2s,color .2s,transform .15s;background:transparent}
-.btn-b:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-/* STATS STRIP */
-.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:3rem}
-.stat-cell{background:var(--bg1);padding:1.25rem 1rem;text-align:center}
-.stat-n{font-family:var(--fm);font-size:2rem;font-weight:700;color:var(--cyan);line-height:1}
-.stat-l{font-size:.68rem;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;font-family:var(--fm)}
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-/* PROFILE CARD */
-.profile{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden}
-.profile::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(34,211,238,.015) 20px,rgba(34,211,238,.015) 21px);pointer-events:none}
-.profile-top{width:3px;height:100%;position:absolute;top:0;left:0;background:linear-gradient(180deg,var(--cyan2),var(--violet))}
-.profile-av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--cyan2),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.4rem;color:#fff;margin:0 auto 1.25rem;border:3px solid var(--bg)}
-.profile-name{font-size:1rem;font-weight:600;text-align:center;margin-bottom:.2rem}
-.profile-role{font-family:var(--fm);font-size:.72rem;color:var(--cyan);text-align:center;margin-bottom:1.5rem}
-.prow{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.8rem}
-.prow:last-child{border:none}
-.prow-k{color:var(--text3);font-family:var(--fm);font-size:.7rem;letter-spacing:.04em}
-.prow-v{color:var(--text);font-weight:500}
-.open-badge{display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--fm);font-size:.7rem;color:var(--green);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:999px;padding:5px 12px;margin-top:1.25rem}
-.open-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green)}
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 8, 20, 0.78);
+      backdrop-filter: blur(18px);
+    }
 
-/* SECTION TITLE */
-.sec-head{display:flex;align-items:baseline;gap:.75rem;margin-bottom:3rem}
-.sec-num{font-family:var(--fm);font-size:.7rem;color:var(--cyan);letter-spacing:.1em}
-.sec-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-.02em}
-.sec-line{flex:1;height:1px;background:var(--border);margin-left:.75rem}
+    .nav-inner {
+      width: min(1160px, calc(100% - 40px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;max-width:1100px;margin:0 auto}
-.about-text p{color:var(--text2);margin-bottom:1rem;line-height:1.9;font-size:.95rem}
-.focus-items{margin-top:1.5rem}
-.focus-item{display:flex;align-items:flex-start;gap:10px;padding:.5rem 0;font-size:.88rem;color:var(--text2);border-bottom:1px solid var(--border)}
-.focus-item:last-child{border:none}
-.focus-item::before{content:'›';color:var(--cyan);font-size:1.1rem;margin-top:-.05rem;flex-shrink:0}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
 
-/* SKILLS */
-.skills-outer{max-width:1100px;margin:0 auto}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem;margin-bottom:2rem}
-.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;transition:border-color .2s,transform .2s}
-.skill-card:hover{border-color:var(--border2);transform:translateY(-3px)}
-.skill-card-h{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
-.skill-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.skill-ico.c{background:rgba(34,211,238,.1);color:var(--cyan)}
-.skill-ico.v{background:rgba(139,92,246,.1);color:var(--violet)}
-.skill-ico.a{background:rgba(245,158,11,.1);color:var(--amber)}
-.skill-ico.g{background:rgba(16,185,129,.1);color:var(--green)}
-.skill-card-t{font-weight:600;font-size:.9rem;letter-spacing:.01em}
-.tag{font-family:var(--fm);font-size:.68rem;color:var(--text2);background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:6px;letter-spacing:.02em;display:inline-block;margin:3px 3px 0 0;transition:border-color .15s,color .15s;cursor:default}
-.tag:hover{border-color:var(--cyan);color:var(--cyan)}
-.tag.e{border-color:rgba(34,211,238,.35);color:var(--cyan)}
-.tag.s{border-color:rgba(139,92,246,.3);color:var(--violet)}
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #020617;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.28);
+    }
 
-/* skill bars */
-.sbar-section{margin-top:2rem}
-.sbar-row{display:flex;align-items:center;gap:1rem;margin-bottom:.9rem}
-.sbar-label{font-family:var(--fm);font-size:.72rem;color:var(--text2);letter-spacing:.04em;width:140px;flex-shrink:0}
-.sbar-track{flex:1;height:4px;background:var(--bg3);border-radius:999px;overflow:hidden}
-.sbar-fill{height:100%;border-radius:999px;transition:width 1.4s cubic-bezier(.25,.46,.45,.94)}
-.sbar-pct{font-family:var(--fm);font-size:.7rem;color:var(--text3);width:32px;text-align:right}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
 
-/* PROJECTS */
-.projects-outer{max-width:1100px;margin:0 auto}
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:1.5rem}
-.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1.75rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
-.proj-card:hover{border-color:var(--border2);transform:translateY(-4px)}
-.proj-accent{position:absolute;top:0;left:0;right:0;height:2px;transform-origin:left;transform:scaleX(0);transition:transform .35s ease}
-.proj-card:hover .proj-accent{transform:scaleX(1)}
-.pa-cyan{background:var(--cyan)}
-.pa-amber{background:var(--amber)}
-.pa-violet{background:var(--violet)}
-.pa-green{background:var(--green)}
-.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.1rem}
-.proj-idx{font-family:var(--fm);font-size:.68rem;color:var(--text3);letter-spacing:.06em}
-.proj-gh{width:28px;height:28px;border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text3);text-decoration:none;font-size:.78rem;transition:border-color .2s,color .2s;flex-shrink:0}
-.proj-gh:hover{border-color:var(--cyan);color:var(--cyan)}
-.proj-title{font-size:1.1rem;font-weight:600;margin-bottom:.7rem}
-.proj-desc{font-size:.87rem;color:var(--text2);line-height:1.78;flex:1;margin-bottom:1rem}
-.proj-impact{font-family:var(--fm);font-size:.72rem;color:var(--green);background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.18);border-radius:6px;padding:7px 12px;margin-bottom:1.1rem;display:flex;align-items:center;gap:7px}
-.proj-impact::before{content:'↳';opacity:.7}
-.proj-stack{display:flex;flex-wrap:wrap;gap:5px}
+    .nav-links a { transition: 0.2s ease; }
+    .nav-links a:hover { color: var(--cyan); }
 
-/* ARCH */
-.arch-outer{max-width:1100px;margin:3rem auto 0}
-.arch-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:2.5rem;overflow-x:auto}
-.arch-label{font-family:var(--fm);font-size:.68rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem}
-.arch-flow{display:flex;align-items:stretch;gap:0;min-width:max-content}
-.arch-node{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:.9rem 1.1rem;text-align:center;min-width:115px;display:flex;flex-direction:column;align-items:center;gap:6px}
-.arch-ico{font-size:1.25rem;line-height:1}
-.arch-nm{font-family:var(--fm);font-size:.72rem;font-weight:500;white-space:nowrap}
-.arch-sub{font-family:var(--fm);font-size:.62rem;color:var(--text3)}
-.arch-arr{display:flex;align-items:center;padding:0 8px;color:var(--text3);font-size:1rem;align-self:center}
-.arch-node.src{border-color:rgba(244,63,94,.3)}.arch-node.src .arch-nm{color:var(--rose)}
-.arch-node.str{border-color:rgba(139,92,246,.3)}.arch-node.str .arch-nm{color:var(--violet)}
-.arch-node.prc{border-color:rgba(34,211,238,.3)}.arch-node.prc .arch-nm{color:var(--cyan)}
-.arch-node.dw{border-color:rgba(245,158,11,.3)}.arch-node.dw .arch-nm{color:var(--amber)}
-.arch-node.viz{border-color:rgba(16,185,129,.3)}.arch-node.viz .arch-nm{color:var(--green)}
+    .nav-btn {
+      padding: 10px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--text) !important;
+      background: rgba(15, 23, 42, 0.7);
+    }
 
-/* EXPERIENCE */
-.exp-outer{max-width:900px;margin:0 auto}
-.timeline{position:relative;padding-left:1.5rem}
-.timeline::before{content:'';position:absolute;left:0;top:12px;bottom:0;width:1px;background:linear-gradient(180deg,var(--cyan),var(--violet),rgba(139,92,246,.1))}
-.tl-item{position:relative;padding:0 0 3rem 2.5rem}
-.tl-item:last-child{padding-bottom:0}
-.tl-dot{position:absolute;left:-1.5rem;top:6px;width:10px;height:10px;border-radius:50%;background:var(--cyan);border:2px solid var(--bg1);transform:translateX(-4px);box-shadow:0 0 0 4px rgba(34,211,238,.12)}
-.tl-dot.past{background:var(--text3);box-shadow:none}
-.tl-date{font-family:var(--fm);font-size:.7rem;color:var(--text3);letter-spacing:.06em;margin-bottom:.4rem}
-.tl-role{font-size:1.05rem;font-weight:600;margin-bottom:.15rem}
-.tl-co{font-family:var(--fm);font-size:.78rem;color:var(--cyan);margin-bottom:.65rem}
-.tl-desc{font-size:.87rem;color:var(--text2);line-height:1.78}
-.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.7rem}
+    .nav-btn:hover { border-color: var(--cyan); }
 
-/* CERTS */
-.certs-outer{max-width:1100px;margin:0 auto}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
-.cert{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem;display:flex;align-items:center;gap:.9rem;transition:border-color .2s}
-.cert:hover{border-color:var(--border2)}
-.cert-ico{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;background:rgba(245,158,11,.1);color:var(--amber)}
-.cert-name{font-size:.84rem;font-weight:500;line-height:1.35;margin-bottom:.2rem}
-.cert-by{font-family:var(--fm);font-size:.67rem;color:var(--text3)}
-.cert-st{font-family:var(--fm);font-size:.62rem;padding:2px 8px;border-radius:999px;margin-top:3px;display:inline-block}
-.cert-st.done{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.2)}
-.cert-st.wip{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+    .hero {
+      min-height: 100vh;
+      padding: 140px 0 80px;
+      display: flex;
+      align-items: center;
+    }
 
-/* CONTACT */
-.contact-outer{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.contact-h{font-size:clamp(2rem,4vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem}
-.contact-h span{color:var(--cyan)}
-.contact-sub{color:var(--text2);line-height:1.85;margin-bottom:2rem;font-size:.95rem}
-.clink{display:flex;align-items:center;gap:.9rem;text-decoration:none;padding:.9rem 1.1rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s,transform .15s;margin-bottom:.75rem}
-.clink:hover{border-color:var(--border2);transform:translateX(5px)}
-.clink-ico{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
-.clink-l{font-family:var(--fm);font-size:.67rem;color:var(--text3);letter-spacing:.05em;margin-bottom:2px}
-.clink-v{font-size:.88rem;font-weight:500;color:var(--text)}
-.clink-arr{margin-left:auto;color:var(--text3);font-size:.85rem;transition:color .2s}
-.clink:hover .clink-arr{color:var(--cyan)}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: center;
+    }
 
-/* FOOTER */
-footer{position:relative;z-index:1;text-align:center;padding:1.75rem;border-top:1px solid var(--border);font-family:var(--fm);font-size:.7rem;color:var(--text3);letter-spacing:.04em}
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      background: rgba(34, 197, 94, 0.08);
+      color: #86efac;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      margin-bottom: 22px;
+    }
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.fade{opacity:0;animation:fadeUp .65s ease forwards}
-.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}.d4{animation-delay:.32s}.d5{animation-delay:.4s}
+    .pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.12);
+    }
 
-/* RESPONSIVE */
-@media(max-width:960px){
-  .hero-wrap{grid-template-columns:1fr}.profile{display:none}
-  .about-grid{grid-template-columns:1fr;gap:2rem}
-  .proj-grid{grid-template-columns:1fr}
-  .contact-outer{grid-template-columns:1fr;gap:2rem}
-  nav .nav-links{display:none}
-}
-@media(max-width:600px){
-  .section{padding:3.5rem 1.25rem}
-  .stats-strip{grid-template-columns:repeat(2,1fr)}
-}
-</style>
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.7rem);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #e0f2fe, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+      color: #cbd5e1;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: 0.18s ease;
+    }
+
+    .btn-primary {
+      color: #020617;
+      background: linear-gradient(135deg, var(--cyan), #7dd3fc);
+      box-shadow: 0 18px 44px rgba(34, 211, 238, 0.22);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: rgba(15, 23, 42, 0.66);
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+    .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.55);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--cyan);
+      font-size: 1.45rem;
+      line-height: 1;
+      font-family: var(--mono);
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted2);
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .profile-card {
+      position: relative;
+      border: 1px solid var(--line-strong);
+      border-radius: 34px;
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.62));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at 30% 0%, rgba(34, 211, 238, 0.22), transparent 35%), radial-gradient(circle at 100% 20%, rgba(139, 92, 246, 0.18), transparent 36%);
+      pointer-events: none;
+    }
+
+    .profile-inner { position: relative; z-index: 1; }
+
+    .terminal-top {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 24px;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--danger); }
+    .dot:nth-child(2) { background: var(--amber); }
+    .dot:nth-child(3) { background: var(--green); }
+
+    .avatar {
+      width: 94px;
+      height: 94px;
+      display: grid;
+      place-items: center;
+      border-radius: 28px;
+      color: #020617;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      font-size: 1.7rem;
+      font-weight: 900;
+      font-family: var(--mono);
+      margin-bottom: 20px;
+      box-shadow: 0 20px 50px rgba(34, 211, 238, 0.18);
+    }
+
+    .profile-card h2 { font-size: 1.6rem; letter-spacing: -0.04em; margin-bottom: 4px; }
+    .profile-role { color: var(--cyan); font-family: var(--mono); font-size: 0.82rem; margin-bottom: 24px; }
+
+    .info-list { display: grid; gap: 10px; }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.88rem;
+    }
+
+    .info-row span:first-child {
+      color: var(--muted2);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    .info-row span:last-child { color: #e2e8f0; text-align: right; }
+
+    .code-card {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(2, 6, 23, 0.48);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .code-card b { color: var(--cyan); font-weight: 600; }
+
+    section { padding: 96px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+
+    .section-desc {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+    }
+
+    .glass {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .about-card { padding: 28px; }
+    .about-card p { color: var(--muted); margin-bottom: 16px; }
+    .about-card p:last-child { margin-bottom: 0; }
+
+    .focus-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .focus-item {
+      padding: 17px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #dbeafe;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .focus-item span {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: rgba(34, 211, 238, 0.1);
+    }
+
+    .skills-grid, .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, 0.68);
+      transition: 0.22s ease;
+    }
+
+    .skill-card:hover, .project-card:hover, .timeline-card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+    .skill-icon { font-size: 1.6rem; margin-bottom: 15px; }
+    .skill-card h3 { font-size: 1rem; margin-bottom: 12px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.42);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      line-height: 1;
+    }
+
+    .tag.hot { color: var(--cyan); border-color: rgba(34, 211, 238, 0.28); }
+
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.58));
+      transition: 0.22s ease;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--muted2);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      margin-bottom: 18px;
+    }
+
+    .project-card h3 { font-size: 1.35rem; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .project-card p { color: var(--muted); font-size: 0.94rem; margin-bottom: 18px; }
+
+    .impact {
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      background: rgba(34, 197, 94, 0.06);
+      color: #86efac;
+      font-family: var(--mono);
+      font-size: 0.73rem;
+    }
+
+    .architecture {
+      margin-top: 18px;
+      padding: 26px;
+      overflow-x: auto;
+    }
+
+    .flow {
+      min-width: 860px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+
+    .node {
+      flex: 1;
+      min-height: 78px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 13px;
+      border-radius: 16px;
+      border: 1px solid var(--line-strong);
+      background: rgba(2, 6, 23, 0.36);
+      color: #dbeafe;
+    }
+
+    .arrow { color: var(--muted2); }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-card {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 24px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, 0.65);
+      transition: 0.22s ease;
+    }
+
+    .time {
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .timeline-card h3 { font-size: 1.1rem; margin-bottom: 4px; }
+    .company { color: #bfdbfe; font-family: var(--mono); font-size: 0.8rem; margin-bottom: 10px; }
+    .timeline-card p { color: var(--muted); font-size: 0.92rem; }
+
+    .contact-card {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(34, 211, 238, 0.13), transparent 36%),
+        rgba(15, 23, 42, 0.72);
+    }
+
+    .contact-card h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
+    }
+
+    .contact-card p { color: var(--muted); margin-bottom: 22px; }
+
+    .contact-links { display: grid; gap: 12px; }
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(2, 6, 23, 0.32);
+      color: #e2e8f0;
+      transition: 0.2s ease;
+    }
+    .contact-link:hover { border-color: var(--cyan); transform: translateX(4px); }
+    .contact-link span { color: var(--muted2); font-family: var(--mono); font-size: 0.75rem; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted2);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: 0.65s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .hero-grid, .about-grid, .contact-card { grid-template-columns: 1fr; }
+      .profile-card { max-width: 560px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+      .timeline-card { grid-template-columns: 1fr; gap: 10px; }
+    }
+
+    @media (max-width: 640px) {
+      .container, .nav-inner { width: min(100% - 28px, 1160px); }
+      .hero { padding-top: 112px; }
+      section { padding: 72px 0; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-desc { margin-top: 12px; }
+      .profile-card, .about-card, .project-card, .contact-card { border-radius: 22px; }
+    }
+  </style>
 </head>
 <body>
-
-<canvas id="bg-canvas"></canvas>
-
-<nav>
-  <a href="#hero" class="nav-brand">SR<span style="color:var(--text3)">.portfolio</span></a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a href="#" class="nav-dl" onclick="alert('Upload resume.pdf to your repo and update this link!')">↓ Resume</a>
-</nav>
-
-<!-- HERO -->
-<section id="hero" class="section">
-  <div class="hero-wrap">
-    <div>
-      <div class="hero-badge fade d1"><span class="hero-badge-dot"></span>Available for opportunities</div>
-      <h1 class="hero-h1 fade d2">Sam<br><span class="line2">Rithisen</span></h1>
-      <p class="hero-sub fade d3">Data Engineer &amp; BI Developer</p>
-      <p class="hero-desc fade d4">I build banking data pipelines, automate MIS reporting, design data warehouses, and explore real-time streaming — turning raw transactional data into reliable, business-ready insights.</p>
-      <div class="hero-cta fade d5">
-        <a href="#projects" class="btn-a">View Projects →</a>
-        <a href="https://github.com/rithisen99" target="_blank" class="btn-b">GitHub</a>
-        <a href="#contact" class="btn-b">Contact</a>
-      </div>
-      <div class="stats-strip fade d5">
-        <div class="stat-cell"><div class="stat-n">3+</div><div class="stat-l">Yrs Reporting</div></div>
-        <div class="stat-cell"><div class="stat-n">10+</div><div class="stat-l">Report Types</div></div>
-        <div class="stat-cell"><div class="stat-n">4+</div><div class="stat-l">DB Tech</div></div>
-        <div class="stat-cell"><div class="stat-n">2+</div><div class="stat-l">Yrs Testing</div></div>
-      </div>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="brand">
+        <span class="brand-mark">SR</span>
+        <span>Sam Rithisen</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a href="resume.pdf" class="nav-btn">Resume</a>
+      </nav>
     </div>
-    <div class="profile fade d3">
-      <div class="profile-top"></div>
-      <div class="profile-av">SR</div>
-      <div class="profile-name">Sam Rithisen</div>
-      <div class="profile-role">Senior Officer, Data Analytics</div>
-      <div class="prow"><span class="prow-k">Company</span><span class="prow-v">SBI Ly Hour Bank</span></div>
-      <div class="prow"><span class="prow-k">Focus</span><span class="prow-v">Data Engineering & BI</span></div>
-      <div class="prow"><span class="prow-k">Industry</span><span class="prow-v">Banking & Finance</span></div>
-      <div class="prow"><span class="prow-k">Location</span><span class="prow-v">Phnom Penh, KH</span></div>
-      <div class="prow"><span class="prow-k">Email</span><span class="prow-v" style="color:var(--cyan);font-size:.75rem">rithesen99@gmail.com</span></div>
-      <div class="open-badge">Open to new opportunities</div>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- ABOUT -->
-<section id="about" class="section section-alt">
-  <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">About Me</h2><div class="sec-line"></div></div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a Data Analytics professional specializing in banking and financial data systems. My work spans the full data lifecycle — from raw CBS transactions through ETL pipelines to executive dashboards and regulatory submissions.</p>
-      <p>Over 3+ years across two banks and a microfinance institution, I've built MIS reports, automated workflows in Python, supported data warehouse design, and recently prototyped real-time CDC streaming with Kafka and Debezium.</p>
-      <p>I care about accuracy, automation, and making complex data infrastructure feel simple to its end users.</p>
-    </div>
-    <div>
-      <p style="font-family:var(--fm);font-size:.68rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem">Current focus</p>
-      <div class="focus-items">
-        <div class="focus-item">Data Engineering & Pipeline Architecture</div>
-        <div class="focus-item">Data Warehouse Design & Optimization</div>
-        <div class="focus-item">Python ETL Automation</div>
-        <div class="focus-item">Real-time CDC — Kafka / Debezium / Spark</div>
-        <div class="focus-item">Banking Analytics & Regulatory Reporting</div>
-        <div class="focus-item">Power BI & Oracle BI Dashboards</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="pill"><span class="pulse"></span> Open to Data Engineering & BI opportunities</div>
+          <h1>Banking Data.<br><span class="gradient-text">Built Better.</span></h1>
+          <p class="subtitle">Data Engineer & BI Developer based in Phnom Penh</p>
+          <p class="hero-copy">
+            I design data pipelines, automate MIS/regulatory reports, optimize SQL, and build business-ready analytics for banking systems using Oracle, SQL Server, Python, Power BI, Kafka, Debezium, and Spark.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View Projects →</a>
+            <a class="btn btn-secondary" href="https://github.com/rithisen99" target="_blank">GitHub</a>
+            <a class="btn btn-secondary" href="mailto:rithesen99@gmail.com">Email Me</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><strong>3+</strong><span>Years BI / MIS</span></div>
+            <div class="stat"><strong>10+</strong><span>Report Types</span></div>
+            <div class="stat"><strong>4+</strong><span>Databases</span></div>
+            <div class="stat"><strong>Banking</strong><span>Domain Focus</span></div>
+          </div>
+        </div>
 
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Technical Skills</h2><div class="sec-line"></div></div>
-  <div class="skills-outer">
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-card-h"><div class="skill-ico c">🗄</div><div class="skill-card-t">Databases</div></div>
-        <div><span class="tag e">SQL Server</span><span class="tag e">Oracle PL/SQL</span><span class="tag s">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">DBeaver</span></div>
+        <aside class="profile-card reveal">
+          <div class="profile-inner">
+            <div class="terminal-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="avatar">SR</div>
+            <h2>Sam Rithisen</h2>
+            <div class="profile-role">Senior Officer, Data Analytics</div>
+            <div class="info-list">
+              <div class="info-row"><span>Industry</span><span>Banking & Finance</span></div>
+              <div class="info-row"><span>Focus</span><span>Data Engineering / BI</span></div>
+              <div class="info-row"><span>Location</span><span>Phnom Penh, Cambodia</span></div>
+              <div class="info-row"><span>Email</span><span>rithesen99@gmail.com</span></div>
+            </div>
+            <div class="code-card">
+              <b>current_focus</b> = ["Python ETL", "Data Warehouse", "CDC Streaming", "Power BI"]
+            </div>
+          </div>
+        </aside>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-h"><div class="skill-ico v">⚙️</div><div class="skill-card-t">Data Engineering</div></div>
-        <div><span class="tag e">Python ETL</span><span class="tag s">SSIS</span><span class="tag s">Talend</span><span class="tag">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">Docker</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-h"><div class="skill-ico a">📊</div><div class="skill-card-t">BI & Reporting</div></div>
-        <div><span class="tag e">Power BI</span><span class="tag e">Oracle BI</span><span class="tag s">BI Publisher</span><span class="tag">MIS Reports</span><span class="tag">Excel</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-h"><div class="skill-ico g">🏦</div><div class="skill-card-t">Banking Domain</div></div>
-        <div><span class="tag e">Regulatory Reporting</span><span class="tag e">CBS</span><span class="tag s">Bakong</span><span class="tag">CBC / NBC</span><span class="tag">UAT</span></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="sbar-section">
-      <p style="font-family:var(--fm);font-size:.68rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem">Proficiency levels</p>
-      <div id="sbars">
-        <div class="sbar-row"><span class="sbar-label">SQL / PL-SQL</span><div class="sbar-track"><div class="sbar-fill" data-w="92" style="width:0;background:var(--cyan)"></div></div><span class="sbar-pct">92%</span></div>
-        <div class="sbar-row"><span class="sbar-label">Power BI</span><div class="sbar-track"><div class="sbar-fill" data-w="88" style="width:0;background:var(--cyan)"></div></div><span class="sbar-pct">88%</span></div>
-        <div class="sbar-row"><span class="sbar-label">Python ETL</span><div class="sbar-track"><div class="sbar-fill" data-w="82" style="width:0;background:var(--violet)"></div></div><span class="sbar-pct">82%</span></div>
-        <div class="sbar-row"><span class="sbar-label">Oracle BI / OBIEE</span><div class="sbar-track"><div class="sbar-fill" data-w="80" style="width:0;background:var(--violet)"></div></div><span class="sbar-pct">80%</span></div>
-        <div class="sbar-row"><span class="sbar-label">Kafka / Debezium</span><div class="sbar-track"><div class="sbar-fill" data-w="58" style="width:0;background:var(--amber)"></div></div><span class="sbar-pct">58%</span></div>
-        <div class="sbar-row"><span class="sbar-label">Spark Streaming</span><div class="sbar-track"><div class="sbar-fill" data-w="50" style="width:0;background:var(--amber)"></div></div><span class="sbar-pct">50%</span></div>
-      </div>
-      <p style="font-family:var(--fm);font-size:.66rem;color:var(--text3);margin-top:.75rem">
-        <span style="color:var(--cyan)">■</span> Expert &nbsp;
-        <span style="color:var(--violet)">■</span> Proficient &nbsp;
-        <span style="color:var(--amber)">■</span> Growing
-      </p>
-    </div>
-  </div>
-</section>
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">01 / About</div>
+            <h2 class="section-title">Turning banking data into trusted insight.</h2>
+          </div>
+          <p class="section-desc">I work across reporting, data warehouse support, ETL automation, dashboarding, and real-time data platform learning.</p>
+        </div>
 
-<!-- PROJECTS -->
-<section id="projects" class="section section-alt">
-  <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Featured Projects</h2><div class="sec-line"></div></div>
-  <div class="projects-outer">
-    <div class="proj-grid">
+        <div class="about-grid">
+          <div class="about-card glass reveal">
+            <p>
+              I am a Data Analytics professional with hands-on experience in banking and financial data systems. My work covers SQL reporting, BI dashboards, regulatory reporting, data cleaning, and automation.
+            </p>
+            <p>
+              I enjoy building practical solutions that reduce manual work, improve report accuracy, and make data easier for business teams to use.
+            </p>
+            <p>
+              My current learning focus is modern data engineering: CDC, Kafka, Debezium, Spark Streaming, Docker, and data warehouse architecture.
+            </p>
+          </div>
 
-      <div class="proj-card">
-        <div class="proj-accent pa-cyan"></div>
-        <div class="proj-top"><span class="proj-idx">01 — MIS & BI</span><a href="https://github.com/rithisen99" target="_blank" class="proj-gh">↗</a></div>
-        <h3 class="proj-title">Banking MIS & BI Reporting</h3>
-        <p class="proj-desc">Built and maintained operational, management, and business reports for banking users. Automated SQL-driven reports for branch performance, loan portfolios, and deposit analytics across SQL Server and Oracle BI environments.</p>
-        <div class="proj-impact">Improved reporting availability, supported executive decision-making</div>
-        <div class="proj-stack"><span class="tag">SQL Server</span><span class="tag">Oracle</span><span class="tag">Power BI</span><span class="tag">Oracle BI</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-accent pa-amber"></div>
-        <div class="proj-top"><span class="proj-idx">02 — Compliance</span><a href="https://github.com/rithisen99" target="_blank" class="proj-gh">↗</a></div>
-        <h3 class="proj-title">Regulatory Reporting Automation</h3>
-        <p class="proj-desc">Automated CBC/NBC regulatory report preparation with validation rules, reconciliation checks, and scheduled delivery. Reduced manual touchpoints across monthly submission cycles and improved data consistency for audits.</p>
-        <div class="proj-impact">Cut manual checking time and improved regulatory consistency</div>
-        <div class="proj-stack"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Excel</span><span class="tag">Banking Data</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-accent pa-violet"></div>
-        <div class="proj-top"><span class="proj-idx">03 — Automation</span><a href="https://github.com/rithisen99" target="_blank" class="proj-gh">↗</a></div>
-        <h3 class="proj-title">Python ETL Automation</h3>
-        <p class="proj-desc">Built Python scripts to load Excel/CSV data from multiple banking departments into SQL Server — with schema validation, data cleaning, batch inserts, error logging, and retry logic. Handles format variations gracefully.</p>
-        <div class="proj-impact">Automated repetitive loading, eliminated manual data entry errors</div>
-        <div class="proj-stack"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">pyodbc</span><span class="tag">SQL Server</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-accent pa-green"></div>
-        <div class="proj-top"><span class="proj-idx">04 — Streaming</span><a href="https://github.com/rithisen99" target="_blank" class="proj-gh">↗</a></div>
-        <h3 class="proj-title">Real-Time CDC Streaming Pipeline</h3>
-        <p class="proj-desc">Designed a Change Data Capture architecture streaming DB changes from Oracle/SQL Server to analytics destinations via Debezium connectors, Kafka topics, and Spark Streaming jobs — all containerized with Docker Compose.</p>
-        <div class="proj-impact">Enables near real-time analytics and future data platform modernization</div>
-        <div class="proj-stack"><span class="tag">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">Docker</span></div>
-      </div>
-
-    </div>
-
-    <div class="arch-outer">
-      <div class="arch-box">
-        <div class="arch-label">// Real-time CDC data flow architecture</div>
-        <div class="arch-flow">
-          <div class="arch-node src"><div class="arch-ico">🏦</div><div class="arch-nm">Oracle / SQL Server</div><div class="arch-sub">Source DB</div></div>
-          <div class="arch-arr">──▶</div>
-          <div class="arch-node str"><div class="arch-ico">🔄</div><div class="arch-nm">Debezium</div><div class="arch-sub">CDC Connector</div></div>
-          <div class="arch-arr">──▶</div>
-          <div class="arch-node str"><div class="arch-ico">📨</div><div class="arch-nm">Kafka</div><div class="arch-sub">Message Broker</div></div>
-          <div class="arch-arr">──▶</div>
-          <div class="arch-node prc"><div class="arch-ico">⚡</div><div class="arch-nm">Spark Streaming</div><div class="arch-sub">Processing</div></div>
-          <div class="arch-arr">──▶</div>
-          <div class="arch-node dw"><div class="arch-ico">🗄</div><div class="arch-nm">Data Warehouse</div><div class="arch-sub">Analytics Store</div></div>
-          <div class="arch-arr">──▶</div>
-          <div class="arch-node viz"><div class="arch-ico">📊</div><div class="arch-nm">Power BI</div><div class="arch-sub">Visualization</div></div>
+          <div class="focus-grid reveal">
+            <div class="focus-item"><span>🏦</span> Banking Data & Regulatory Reporting</div>
+            <div class="focus-item"><span>🗄️</span> Data Warehouse & SQL Optimization</div>
+            <div class="focus-item"><span>⚙️</span> Python ETL & Process Automation</div>
+            <div class="focus-item"><span>📊</span> Power BI / Oracle BI Dashboards</div>
+            <div class="focus-item"><span>🔄</span> CDC Streaming with Kafka & Debezium</div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="section">
-  <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Experience</h2><div class="sec-line"></div></div>
-  <div class="exp-outer">
-    <div class="timeline">
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">02 / Skills</div>
+            <h2 class="section-title">Technical toolkit</h2>
+          </div>
+          <p class="section-desc">A practical stack for enterprise reporting, analytics engineering, and banking data pipelines.</p>
+        </div>
 
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Oct 2025 — Present</div>
-        <div class="tl-role">Senior Officer, Data Analytics</div>
-        <div class="tl-co">SBI Ly Hour Bank Plc.</div>
-        <div class="tl-desc">Developing MIS and BI reports, interactive dashboards, regulatory reports, data warehouse support, process documentation, and reporting automation. Leading modernization of legacy reporting infrastructure.</div>
-        <div class="tl-tags"><span class="tag e">SQL Server</span><span class="tag e">Power BI</span><span class="tag s">Oracle BI</span><span class="tag">Python</span><span class="tag">Data Warehouse</span></div>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <div class="skill-icon">🗄️</div>
+            <h3>Databases</h3>
+            <div class="tags"><span class="tag hot">SQL Server</span><span class="tag hot">Oracle</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">PL/SQL</span></div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-icon">⚙️</div>
+            <h3>Data Engineering</h3>
+            <div class="tags"><span class="tag hot">Python</span><span class="tag">Pandas</span><span class="tag">SSIS</span><span class="tag">Talend</span><span class="tag">Docker</span></div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-icon">📊</div>
+            <h3>BI & Reporting</h3>
+            <div class="tags"><span class="tag hot">Power BI</span><span class="tag">Oracle BI</span><span class="tag">BI Publisher</span><span class="tag">Excel</span><span class="tag">MIS</span></div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-icon">🔄</div>
+            <h3>Streaming</h3>
+            <div class="tags"><span class="tag">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">CDC</span><span class="tag">Log-based ETL</span></div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="tl-item">
-        <div class="tl-dot past"></div>
-        <div class="tl-date">Apr 2023 — Sep 2025</div>
-        <div class="tl-role">Officer, Business Intelligence</div>
-        <div class="tl-co">AMK Microfinance Institution Plc.</div>
-        <div class="tl-desc">Developed business reports, dashboards, and SQL scripts for finance teams. Prototyped real-time data streaming using Kafka, Debezium, and Spark Streaming as part of a data modernization initiative.</div>
-        <div class="tl-tags"><span class="tag">SQL</span><span class="tag">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">Power BI</span></div>
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">03 / Projects</div>
+            <h2 class="section-title">Featured work</h2>
+          </div>
+          <p class="section-desc">Projects selected to match your target profile: Data Engineer, BI Developer, and Banking Data Specialist.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-meta"><span>01 / BI Reporting</span><span>Banking</span></div>
+            <h3>Banking MIS & BI Reporting</h3>
+            <p>Designed and maintained SQL-driven MIS reports and dashboards for banking operations, branch performance, loans, deposits, and management reporting.</p>
+            <div class="impact">Impact: faster access to reliable business reports and better decision support.</div>
+            <div class="tags"><span class="tag hot">SQL Server</span><span class="tag">Oracle</span><span class="tag">Power BI</span><span class="tag">Oracle BI</span></div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-meta"><span>02 / Compliance</span><span>CBC / NBC</span></div>
+            <h3>Regulatory Reporting Automation</h3>
+            <p>Prepared and automated regulatory reporting workflows with data validation, reconciliation logic, exception checking, and repeatable submission processes.</p>
+            <div class="impact">Impact: reduced manual work and improved report consistency for compliance teams.</div>
+            <div class="tags"><span class="tag hot">SQL</span><span class="tag">Python</span><span class="tag">Excel</span><span class="tag">Validation</span></div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-meta"><span>03 / Automation</span><span>ETL</span></div>
+            <h3>Python ETL Loader</h3>
+            <p>Built Python scripts to read Excel/CSV files, clean columns, validate required fields, batch insert into SQL Server, and log errors for easier maintenance.</p>
+            <div class="impact">Impact: replaced repetitive manual uploads with controlled automated loading.</div>
+            <div class="tags"><span class="tag hot">Python</span><span class="tag">Pandas</span><span class="tag">pyodbc</span><span class="tag">SQL Server</span></div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-meta"><span>04 / Modern Data</span><span>CDC</span></div>
+            <h3>Real-Time CDC Streaming Pipeline</h3>
+            <p>Designed a CDC architecture to stream database changes from Oracle / SQL Server using Debezium, Kafka, Spark Streaming, and Docker-based environments.</p>
+            <div class="impact">Impact: supports near real-time analytics and future data platform modernization.</div>
+            <div class="tags"><span class="tag hot">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">Docker</span></div>
+          </article>
+        </div>
+
+        <div class="architecture glass reveal">
+          <div class="eyebrow">CDC Architecture Example</div>
+          <div class="flow">
+            <div class="node">Oracle / SQL Server<br><small>Source DB</small></div>
+            <div class="arrow">→</div>
+            <div class="node">Debezium<br><small>CDC Connector</small></div>
+            <div class="arrow">→</div>
+            <div class="node">Kafka<br><small>Message Broker</small></div>
+            <div class="arrow">→</div>
+            <div class="node">Spark Streaming<br><small>Processing</small></div>
+            <div class="arrow">→</div>
+            <div class="node">Data Warehouse<br><small>Analytics Store</small></div>
+            <div class="arrow">→</div>
+            <div class="node">Power BI<br><small>Dashboard</small></div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="tl-item">
-        <div class="tl-dot past"></div>
-        <div class="tl-date">Jan 2022 — Mar 2023</div>
-        <div class="tl-role">Officer, MIS Reporting</div>
-        <div class="tl-co">SBI Ly Hour Bank Plc.</div>
-        <div class="tl-desc">Developed and supported CBS, Mobile, Visa, Bakong, SMS Banking, and CBC regulatory reports. Managed BI user access, RFC preparation, and daily reporting operations.</div>
-        <div class="tl-tags"><span class="tag">Oracle BI</span><span class="tag">SQL</span><span class="tag">Bakong</span><span class="tag">CBS</span><span class="tag">CBC Reporting</span></div>
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">04 / Experience</div>
+            <h2 class="section-title">Professional journey</h2>
+          </div>
+          <p class="section-desc">Experience across MIS reporting, BI development, data analytics, system support, and banking data operations.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-card reveal">
+            <div class="time">Oct 2025 — Present</div>
+            <div>
+              <h3>Senior Officer, Data Analytics</h3>
+              <div class="company">SBI Ly Hour Bank Plc.</div>
+              <p>Develop MIS reports, BI dashboards, regulatory reports, data warehouse support, process documentation, and reporting automation.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card reveal">
+            <div class="time">Apr 2023 — Sep 2025</div>
+            <div>
+              <h3>Officer, Business Intelligence</h3>
+              <div class="company">AMK Microfinance Institution Plc.</div>
+              <p>Built business reports, dashboards, SQL scripts, and explored real-time streaming using Kafka, Debezium, and Spark.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card reveal">
+            <div class="time">Jan 2022 — Mar 2023</div>
+            <div>
+              <h3>Officer, MIS Reporting</h3>
+              <div class="company">SBI Ly Hour Bank Plc.</div>
+              <p>Supported CBS, Mobile, Visa, Bakong, SMS Banking, and CBC reports with SQL, Oracle BI, and reporting operations.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card reveal">
+            <div class="time">Jul 2020 — Dec 2021</div>
+            <div>
+              <h3>Application Support Officer</h3>
+              <div class="company">SBI Ly Hour Bank Plc.</div>
+              <p>Handled application testing, UAT support, documentation, QMS, vendor coordination, and banking application operations.</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="tl-item">
-        <div class="tl-dot past"></div>
-        <div class="tl-date">Jul 2020 — Dec 2021</div>
-        <div class="tl-role">Application Support Officer</div>
-        <div class="tl-co">SBI Ly Hour Bank Plc.</div>
-        <div class="tl-desc">Application testing, test case preparation, vendor coordination, QMS, SMS Banking support, and documentation management across multiple banking systems.</div>
-        <div class="tl-tags"><span class="tag">UAT Testing</span><span class="tag">Documentation</span><span class="tag">System Support</span></div>
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card glass reveal">
+          <div>
+            <div class="eyebrow">05 / Contact</div>
+            <h2>Let’s build reliable data systems.</h2>
+            <p>Open to Data Engineer, BI Developer, Data Analyst, and banking data platform opportunities.</p>
+            <a href="mailto:rithesen99@gmail.com" class="btn btn-primary">Send Email →</a>
+          </div>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:rithesen99@gmail.com"><strong>Email</strong><span>rithesen99@gmail.com</span></a>
+            <a class="contact-link" href="https://github.com/rithisen99" target="_blank"><strong>GitHub</strong><span>@rithisen99</span></a>
+            <a class="contact-link" href="https://rithisen99.github.io/Portfolio/" target="_blank"><strong>Portfolio</strong><span>GitHub Pages</span></a>
+            <div class="contact-link"><strong>Location</strong><span>Phnom Penh, Cambodia</span></div>
+          </div>
+        </div>
       </div>
+    </section>
+  </main>
 
-    </div>
-  </div>
-</section>
+  <footer>
+    © 2026 Sam Rithisen · Data Engineer & BI Developer · Built with HTML, CSS, JavaScript & GitHub Pages
+  </footer>
 
-<!-- CERTIFICATIONS -->
-<section id="certs" class="section section-alt">
-  <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Certifications</h2><div class="sec-line"></div></div>
-  <div class="certs-outer">
-    <div class="cert-grid">
-      <div class="cert"><div class="cert-ico">🎓</div><div><div class="cert-name">Foundations: Data, Data, Everywhere</div><div class="cert-by">Google / Coursera</div><span class="cert-st done">Completed</span></div></div>
-      <div class="cert"><div class="cert-ico">🎓</div><div><div class="cert-name">Business Intelligence Foundations</div><div class="cert-by">LinkedIn Learning</div><span class="cert-st done">Completed</span></div></div>
-      <div class="cert"><div class="cert-ico">🎓</div><div><div class="cert-name">Python for Data Analysis</div><div class="cert-by">Online Course</div><span class="cert-st done">Completed</span></div></div>
-      <div class="cert"><div class="cert-ico">📋</div><div><div class="cert-name">Power BI Data Analyst (PL-300)</div><div class="cert-by">Microsoft</div><span class="cert-st wip">In Progress</span></div></div>
-      <div class="cert"><div class="cert-ico">📋</div><div><div class="cert-name">Data Engineering Professional</div><div class="cert-by">Databricks / Coursera</div><span class="cert-st wip">In Progress</span></div></div>
-      <div class="cert"><div class="cert-ico">📋</div><div><div class="cert-name">Project Management Certification</div><div class="cert-by">PMI</div><span class="cert-st wip">In Progress</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Get In Touch</h2><div class="sec-line"></div></div>
-  <div class="contact-outer">
-    <div>
-      <h2 class="contact-h">Let's build<br>something <span>together</span></h2>
-      <p class="contact-sub">Open to data engineering, BI, analytics, and banking data roles. Whether it's a full-time position, contract work, or a collaboration — reach out any time.</p>
-      <a href="mailto:rithesen99@gmail.com" class="btn-a" style="display:inline-flex">Send Email →</a>
-    </div>
-    <div>
-      <a href="mailto:rithesen99@gmail.com" class="clink"><div class="clink-ico" style="background:rgba(34,211,238,.1)">📧</div><div><div class="clink-l">EMAIL</div><div class="clink-v">rithesen99@gmail.com</div></div><span class="clink-arr">→</span></a>
-      <a href="https://github.com/rithisen99" target="_blank" class="clink"><div class="clink-ico" style="background:rgba(139,92,246,.1)">🐙</div><div><div class="clink-l">GITHUB</div><div class="clink-v">github.com/rithisen99</div></div><span class="clink-arr">→</span></a>
-      <a href="https://rithisen99.github.io/SamRithisen-Portfolio/" target="_blank" class="clink"><div class="clink-ico" style="background:rgba(16,185,129,.1)">🌐</div><div><div class="clink-l">PORTFOLIO</div><div class="clink-v">rithisen99.github.io/…</div></div><span class="clink-arr">→</span></a>
-      <div class="clink" style="cursor:default"><div class="clink-ico" style="background:rgba(245,158,11,.1)">📍</div><div><div class="clink-l">LOCATION</div><div class="clink-v">Phnom Penh, Cambodia</div></div></div>
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 Sam Rithisen &nbsp;·&nbsp; Built with HTML, CSS & GitHub Pages &nbsp;·&nbsp; Phnom Penh, Cambodia</footer>
-
-<script>
-/* PARTICLE CANVAS */
-(function(){
-  const c=document.getElementById('bg-canvas');
-  if(!c)return;
-  const ctx=c.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
-  resize();window.addEventListener('resize',()=>{resize();init()});
-  function Pt(){
-    this.x=Math.random()*W;this.y=Math.random()*H;
-    this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;
-    this.r=Math.random()*1.5+.5;
-  }
-  function init(){pts=[];for(let i=0;i<90;i++)pts.push(new Pt())}
-  init();
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(34,211,238,.45)';ctx.fill();
-    });
-    pts.forEach((a,i)=>{
-      for(let j=i+1;j<pts.length;j++){
-        const b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){
-          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-          ctx.strokeStyle=`rgba(34,211,238,${.18*(1-d/120)})`;
-          ctx.lineWidth=.5;ctx.stroke();
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
         }
-      }
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+      });
+    }, { threshold: 0.12 });
 
-/* SKILL BARS — animate on scroll */
-(function(){
-  const bars=document.querySelectorAll('.sbar-fill');
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        bars.forEach(b=>{b.style.width=b.dataset.w+'%'});
-        obs.disconnect();
-      }
-    });
-  },{threshold:.3});
-  const sec=document.getElementById('sbars');
-  if(sec)obs.observe(sec);
-})();
-</script>
+    reveals.forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
