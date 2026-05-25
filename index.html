@@ -10,50 +10,118 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       background: #020617;
-      color: #e5e7eb;
-      line-height: 1.6;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(2, 6, 23, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1e293b;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #38bdf8;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      margin-left: 18px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
     }
 
     header {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.25), transparent 35%),
+        linear-gradient(135deg, #020617, #0f172a, #111827);
+      padding: 100px 20px 60px;
     }
 
-    .hero h1 {
-      font-size: 52px;
-      color: #ffffff;
+    .hero {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 35px;
+      align-items: center;
     }
 
-    .hero h2 {
+    .badge {
+      display: inline-block;
+      background: rgba(56,189,248,.12);
       color: #38bdf8;
-      margin: 10px 0;
+      padding: 8px 14px;
+      border-radius: 30px;
+      border: 1px solid rgba(56,189,248,.35);
+      margin-bottom: 18px;
+      font-size: 14px;
     }
 
-    .hero p {
-      max-width: 700px;
-      margin: 20px auto;
+    h1 {
+      font-size: 56px;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      color: #38bdf8;
+    }
+
+    .hero-text {
       color: #cbd5e1;
+      max-width: 720px;
+      font-size: 18px;
+      margin-bottom: 25px;
     }
 
     .btn {
       display: inline-block;
-      margin: 10px;
-      padding: 12px 24px;
+      padding: 13px 24px;
       border-radius: 30px;
       background: #38bdf8;
       color: #020617;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      margin: 8px 8px 8px 0;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(56,189,248,.25);
     }
 
     .btn.secondary {
@@ -62,101 +130,256 @@
       border: 1px solid #38bdf8;
     }
 
+    .profile-card {
+      background: rgba(15, 23, 42, .75);
+      border: 1px solid #1e293b;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .profile-card h3 {
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .profile-card ul {
+      list-style: none;
+    }
+
+    .profile-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid #1e293b;
+      color: #cbd5e1;
+    }
+
+    .profile-card li:last-child {
+      border-bottom: none;
+    }
+
     section {
-      width: 90%;
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
-      padding: 70px 0;
+      padding: 75px 20px;
     }
 
-    h2.section-title {
-      font-size: 34px;
-      margin-bottom: 30px;
-      color: #38bdf8;
+    .section-title {
+      font-size: 36px;
       text-align: center;
-    }
-
-    .card {
-      background: #0f172a;
-      padding: 25px;
-      border-radius: 18px;
-      border: 1px solid #1e293b;
-      margin-bottom: 20px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .skills span {
-      background: #1e293b;
-      color: #38bdf8;
-      padding: 10px 16px;
-      border-radius: 30px;
-      font-weight: bold;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-    }
-
-    .project-card {
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      padding: 25px;
-      border-radius: 18px;
-      transition: 0.3s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: #38bdf8;
-    }
-
-    .project-card h3 {
       color: #ffffff;
       margin-bottom: 12px;
     }
 
-    .project-card p {
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 35px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .stat-card,
+    .card,
+    .project,
+    .skill-box {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .stat-card {
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      color: #38bdf8;
+      font-size: 34px;
+    }
+
+    .stat-card p {
       color: #cbd5e1;
-      margin-bottom: 15px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+    }
+
+    .card h3 {
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+
+    .card p,
+    .card li {
+      color: #cbd5e1;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .skill-box h3 {
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tags span {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+    }
+
+    .project {
+      transition: .3s;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+    }
+
+    .project h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tech span {
+      font-size: 12px;
+      background: rgba(56,189,248,.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56,189,248,.25);
+      padding: 5px 9px;
+      border-radius: 20px;
     }
 
     .architecture {
-      background: #020617;
+      background: #0f172a;
       border: 1px dashed #38bdf8;
-      padding: 25px;
-      border-radius: 18px;
+      border-radius: 22px;
+      padding: 28px;
       text-align: center;
-      font-size: 18px;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .flow span {
+      background: #1e293b;
+      padding: 12px 16px;
+      border-radius: 14px;
       color: #e0f2fe;
+    }
+
+    .timeline {
+      position: relative;
+      border-left: 3px solid #38bdf8;
+      padding-left: 28px;
+    }
+
+    .job {
+      margin-bottom: 30px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .job h3 {
+      color: #ffffff;
+    }
+
+    .job .date {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .job p {
+      color: #cbd5e1;
+    }
+
+    .cert-list {
+      columns: 2;
+      padding-left: 20px;
+    }
+
+    .contact-card {
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      border: 1px solid #1e293b;
+      border-radius: 24px;
+      padding: 35px;
     }
 
     footer {
       text-align: center;
       padding: 30px;
-      background: #020617;
       color: #94a3b8;
       border-top: 1px solid #1e293b;
+      background: #020617;
     }
 
     a {
       color: #38bdf8;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 36px;
+    @media(max-width: 800px) {
+      .hero,
+      .about-grid {
+        grid-template-columns: 1fr;
       }
 
-      section {
-        padding: 45px 0;
+      h1 {
+        font-size: 40px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cert-list {
+        columns: 1;
       }
     }
   </style>
@@ -164,118 +387,306 @@
 
 <body>
 
-  <header>
-    <div class="hero">
-      <h1>SAM RITHISEN</h1>
-      <h2>Data Engineer | BI Developer | Banking Technology</h2>
-      <p>
-        I build data pipelines, ETL automation, SQL reporting, real-time CDC streaming,
-        and banking analytics solutions using Python, SQL, Oracle, SQL Server, Kafka,
-        Debezium, Docker, and PySpark.
+<nav>
+  <div class="nav-container">
+    <div class="logo">SAM RITHISEN</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="hero">
+    <div>
+      <span class="badge">Banking Analytics • Data Engineering • BI Reporting</span>
+      <h1>Data Engineer & <span class="highlight">BI Developer</span></h1>
+      <p class="hero-text">
+        I design and build banking data solutions including MIS reports,
+        dashboards, ETL automation, data warehouse support, regulatory reporting,
+        and real-time streaming pipelines.
       </p>
 
-      <a class="btn" href="https://github.com/rithesen99" target="_blank">View GitHub</a>
-      <a class="btn secondary" href="#projects">View Projects</a>
-      <a class="btn secondary" href="#" target="_blank">Download CV</a>
+      <a class="btn" href="#projects">View Projects</a>
+      <a class="btn secondary" href="https://github.com/rithesen99" target="_blank">GitHub Profile</a>
+      <a class="btn secondary" href="#contact">Contact</a>
     </div>
-  </header>
 
-  <section id="about">
-    <h2 class="section-title">About Me</h2>
+    <div class="profile-card">
+      <h3>Professional Summary</h3>
+      <ul>
+        <li><strong>Name:</strong> Sam Rithisen</li>
+        <li><strong>Role:</strong> Senior Officer, Data Analytics</li>
+        <li><strong>Focus:</strong> Data Engineering & BI</li>
+        <li><strong>Industry:</strong> Banking & Finance</li>
+        <li><strong>Location:</strong> Phnom Penh, Cambodia</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="stats">
+    <div class="stat-card">
+      <h3>3+</h3>
+      <p>Years Reporting Experience</p>
+    </div>
+    <div class="stat-card">
+      <h3>2+</h3>
+      <p>Years System Testing</p>
+    </div>
+    <div class="stat-card">
+      <h3>4+</h3>
+      <p>Database Technologies</p>
+    </div>
+    <div class="stat-card">
+      <h3>10+</h3>
+      <p>BI / MIS Report Types</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <p class="section-subtitle">Focused on practical data solutions for banking and analytics.</p>
+
+  <div class="about-grid">
     <div class="card">
+      <h3>Who I Am</h3>
       <p>
-        I am a Data Engineer and BI Developer with experience in banking systems,
-        data warehouse development, SQL optimization, Python ETL automation,
-        reconciliation reporting, and real-time data streaming. I enjoy building
-        practical data solutions that help businesses improve reporting, analytics,
-        and decision-making.
+        I am a Data Analytics professional with experience in banking reporting,
+        BI development, system testing, ETL processes, and data warehouse support.
+        I enjoy working with data to answer business questions, improve reporting
+        accuracy, and automate manual processes.
       </p>
     </div>
-  </section>
 
-  <section id="skills">
-    <h2 class="section-title">Technical Skills</h2>
-    <div class="skills">
-      <span>Python</span>
-      <span>SQL</span>
-      <span>Oracle</span>
-      <span>SQL Server</span>
-      <span>PostgreSQL</span>
-      <span>MySQL</span>
-      <span>Kafka</span>
+    <div class="card">
+      <h3>Current Focus</h3>
+      <ul>
+        <li>Data Engineering</li>
+        <li>Data Warehouse Design</li>
+        <li>Python ETL Automation</li>
+        <li>Kafka / Debezium / Spark Streaming</li>
+        <li>Banking Analytics & Regulatory Reporting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="section-subtitle">Tools and technologies I use for data and reporting projects.</p>
+
+  <div class="skills-grid">
+    <div class="skill-box">
+      <h3>Databases</h3>
+      <div class="skill-tags">
+        <span>SQL Server</span>
+        <span>Oracle PL/SQL</span>
+        <span>PostgreSQL</span>
+        <span>MySQL</span>
+        <span>DBeaver</span>
+      </div>
+    </div>
+
+    <div class="skill-box">
+      <h3>Data Engineering</h3>
+      <div class="skill-tags">
+        <span>Python</span>
+        <span>ETL</span>
+        <span>SSIS</span>
+        <span>Talend</span>
+        <span>Kafka</span>
+        <span>Debezium</span>
+        <span>Spark Streaming</span>
+        <span>Docker</span>
+      </div>
+    </div>
+
+    <div class="skill-box">
+      <h3>BI & Reporting</h3>
+      <div class="skill-tags">
+        <span>Power BI</span>
+        <span>Oracle BI</span>
+        <span>BI Publisher</span>
+        <span>MIS Reports</span>
+        <span>Dashboards</span>
+      </div>
+    </div>
+
+    <div class="skill-box">
+      <h3>Professional Skills</h3>
+      <div class="skill-tags">
+        <span>Problem Solving</span>
+        <span>Communication</span>
+        <span>Teamwork</span>
+        <span>Documentation</span>
+        <span>Project Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="section-subtitle">Portfolio projects aligned with banking data engineering and BI.</p>
+
+  <div class="projects">
+    <div class="project">
+      <h3>Banking MIS & BI Reporting</h3>
+      <p>
+        Developed and maintained operational, management, and business reports
+        for banking users using SQL and BI tools.
+      </p>
+      <strong>Impact:</strong>
+      <p>Improved reporting availability and supported business decision-making.</p>
+      <div class="tech">
+        <span>SQL Server</span><span>Oracle</span><span>Power BI</span><span>Oracle BI</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Regulatory Reporting Automation</h3>
+      <p>
+        Prepared and supported CBC/NBC regulatory reporting with validation,
+        reconciliation, and scheduled report delivery.
+      </p>
+      <strong>Impact:</strong>
+      <p>Reduced manual checking and improved report consistency.</p>
+      <div class="tech">
+        <span>SQL</span><span>Python</span><span>Excel</span><span>Banking Data</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Python ETL Automation</h3>
+      <p>
+        Built Python scripts to load Excel/CSV files into SQL Server with data
+        cleaning, batch insert, logging, and error handling.
+      </p>
+      <strong>Impact:</strong>
+      <p>Automated repetitive data loading and reduced processing time.</p>
+      <div class="tech">
+        <span>Python</span><span>Pandas</span><span>pyodbc</span><span>SQL Server</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Real-Time CDC Streaming Pipeline</h3>
+      <p>
+        Designed CDC architecture to stream database changes from operational
+        systems into analytics-ready destinations.
+      </p>
+      <strong>Impact:</strong>
+      <p>Supports near real-time analytics and future data platform modernization.</p>
+      <div class="tech">
+        <span>Kafka</span><span>Debezium</span><span>Spark</span><span>Docker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Data Engineering Architecture</h2>
+  <p class="section-subtitle">Example architecture for real-time banking data integration.</p>
+
+  <div class="architecture">
+    <h3>Real-Time CDC Flow</h3>
+    <div class="flow">
+      <span>Oracle / SQL Server</span>
+      <span>→</span>
       <span>Debezium</span>
-      <span>PySpark</span>
-      <span>Docker</span>
-      <span>Airflow</span>
-      <span>Power BI</span>
-      <span>BI Publisher</span>
-      <span>GitHub</span>
+      <span>→</span>
+      <span>Kafka</span>
+      <span>→</span>
+      <span>Spark Streaming</span>
+      <span>→</span>
+      <span>Data Warehouse</span>
+      <span>→</span>
+      <span>Power BI / BI Publisher</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="projects">
-    <h2 class="section-title">Projects</h2>
+<section id="experience">
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-subtitle">Professional background in banking data, reporting, and system support.</p>
 
-    <div class="projects">
-
-      <div class="project-card">
-        <h3>Real-Time CDC Data Pipeline</h3>
-        <p>
-          Built a streaming pipeline using SQL Server, Debezium, Kafka, PySpark,
-          and Oracle/PostgreSQL for insert, update, and delete events.
-        </p>
-        <a href="https://github.com/rithesen99" target="_blank">View Project</a>
-      </div>
-
-      <div class="project-card">
-        <h3>Banking Data Warehouse</h3>
-        <p>
-          Designed a banking data warehouse with fact tables, dimension tables,
-          ETL process, reporting layer, and data quality validation.
-        </p>
-        <a href="https://github.com/rithesen99" target="_blank">View Project</a>
-      </div>
-
-      <div class="project-card">
-        <h3>Python ETL Automation</h3>
-        <p>
-          Automated Excel and CSV data loading into SQL Server using Python,
-          pandas, pyodbc, batch insert, logging, and error handling.
-        </p>
-        <a href="https://github.com/rithesen99" target="_blank">View Project</a>
-      </div>
-
-      <div class="project-card">
-        <h3>CBC Reconciliation Reporting</h3>
-        <p>
-          Created reconciliation logic for banking reports to identify matched,
-          mismatched, and corrected customer/account records.
-        </p>
-        <a href="https://github.com/rithesen99" target="_blank">View Project</a>
-      </div>
-
+  <div class="timeline">
+    <div class="job">
+      <span class="date">Oct 2025 – Present</span>
+      <h3>Senior Officer, Data Analytics — SBI Ly Hour Bank Plc.</h3>
+      <p>
+        Develop MIS, BI reports, dashboards, regulatory reports, documentation,
+        data warehouse support, process improvement, and reporting automation.
+      </p>
     </div>
-  </section>
 
-  <section id="architecture">
-    <h2 class="section-title">Data Engineering Architecture</h2>
-    <div class="architecture">
-      Oracle / SQL Server → Debezium → Kafka → PySpark → Data Warehouse → Power BI / BI Publisher
+    <div class="job">
+      <span class="date">Apr 2023 – Sep 2025</span>
+      <h3>Officer Business Intelligence — AMK Microfinance Institution Plc.</h3>
+      <p>
+        Developed business reports, dashboards, SQL scripts, and explored data
+        streaming technologies including Kafka, Debezium, and Spark Streaming.
+      </p>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <div class="card" style="text-align:center;">
-      <p>Email: your-email@example.com</p>
-      <p>GitHub: <a href="https://github.com/rithesen99" target="_blank">github.com/rithesen99</a></p>
-      <p>Portfolio: <a href="https://rithesen99.github.io/SamRithisen-Portfolio/" target="_blank">Live Website</a></p>
+    <div class="job">
+      <span class="date">Jan 2022 – Mar 2023</span>
+      <h3>Officer MIS Reporting — SBI Ly Hour Bank Plc.</h3>
+      <p>
+        Developed and supported CBS, Mobile, Visa, Bakong, SMS Banking, CBC,
+        user BI management, RFC preparation, and reporting operations.
+      </p>
     </div>
-  </section>
 
-  <footer>
-    © 2026 SAM RITHISEN. All Rights Reserved.
-  </footer>
+    <div class="job">
+      <span class="date">Jul 2020 – Dec 2022</span>
+      <h3>Application Support Officer — SBI Ly Hour Bank Plc.</h3>
+      <p>
+        Supported application testing, test case preparation, vendor coordination,
+        system support, QMS, SMS Banking, CBC, and documentation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Certifications</h2>
+  <div class="card">
+    <ul class="cert-list">
+      <li>Currently pursuing Data Engineering</li>
+      <li>Python for Data Analysis</li>
+      <li>DevOps Engineering</li>
+      <li>Power BI Certification</li>
+      <li>Project Management Certification</li>
+      <li>Business Intelligence Foundations</li>
+      <li>Foundations: Data, Data, Everywhere</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-subtitle">Open to data engineering, BI, analytics, and banking data projects.</p>
+
+  <div class="contact-card">
+    <h3>Let’s Connect</h3>
+    <p>Email: rithesen99@gmail.com</p>
+    <p>Location: Phnom Penh, Cambodia</p>
+    <p>GitHub: <a href="https://github.com/rithesen99" target="_blank">github.com/rithesen99</a></p>
+    <p>Portfolio: <a href="https://rithesen99.github.io/SamRithisen-Portfolio/" target="_blank">Live Website</a></p>
+  </div>
+</section>
+
+<footer>
+  © 2026 SAM RITHISEN. Built with HTML, CSS, and GitHub Pages.
+</footer>
 
 </body>
 </html>
