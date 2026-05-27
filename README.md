@@ -1,28 +1,17 @@
 # Sam Rithisen Portfolio
 
-Modern portfolio for Data Engineer & BI Developer profile.
+Modern personal portfolio for GitHub Pages.
 
 ## Files
+- `index.html` - main portfolio content
+- `style.css` - modern dark UI, responsive layout, animations
+- `script.js` - scroll reveal, mobile menu, progress bar, active navigation, counters, tilt cards
 
-- `index.html` - Main website page
-- `style.css` - All design and responsive styles
-- `script.js` - Scroll animation
-- `resume.pdf` - Upload your CV with this exact name
+## Deploy on GitHub Pages
+1. Upload these files to your GitHub repository.
+2. Go to **Settings > Pages**.
+3. Choose branch: `main` and folder: `/root`.
+4. Open your GitHub Pages URL.
 
-## GitHub Pages
-
-Upload these files to your GitHub repository root:
-
-```text
-Portfolio/
-├── index.html
-├── style.css
-├── script.js
-└── resume.pdf
-```
-
-Then open:
-
-```text
-https://rithisen99.github.io/Portfolio/
-```
+## Optional
+Place your resume file as `resume.pdf` in the same folder so the Resume button works.
