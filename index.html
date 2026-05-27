@@ -3,359 +3,185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sam Rithisen - Data Engineer, BI Developer, and Banking Data Analytics portfolio." />
   <title>Sam Rithisen | Data Engineer & BI Developer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <header class="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="background-orbs" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <header class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#home" class="brand">
+      <a href="#home" class="brand" aria-label="Sam Rithisen portfolio home">
         <span class="brand-mark">SR</span>
         <span>Sam Rithisen</span>
       </a>
 
-      <nav class="nav-links">
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
-        <a href="Sam Rithisen -Sr.Data analytics.pdf" class="nav-btn">Resume</a>
+        <a href="resume.pdf" class="nav-btn">Resume</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
+    <section id="home" class="hero section-active">
       <div class="container hero-grid">
-        <div class="reveal">
-          <div class="pill">
-            <span class="pulse"></span>
-            Open to Data Engineering & BI opportunities
-          </div>
-
-          <h1>Banking Data.<br><span class="gradient-text">Built Better.</span></h1>
-          <p class="subtitle">Data Engineer & BI Developer based in Phnom Penh</p>
-
+        <div class="hero-content reveal">
+          <div class="pill"><span class="pulse"></span> Banking Data · BI · Data Engineering</div>
+          <h1>Building trusted <span class="gradient-text">banking data</span> solutions.</h1>
+          <p class="subtitle">Data Analytics / BI Developer based in Phnom Penh, Cambodia</p>
           <p class="hero-copy">
-            I design data pipelines, automate MIS/regulatory reports, optimize SQL,
-            and build business-ready analytics for banking systems using Oracle,
-            SQL Server, Python, Power BI, Kafka, Debezium, and Spark.
+            I build SQL-driven reports, automate ETL workflows, improve data quality,
+            and design modern data pipelines for banking analytics using Oracle, SQL Server,
+            Python, Power BI, Kafka, Debezium, Spark, and Docker.
           </p>
 
           <div class="cta-row">
-            <a class="btn btn-primary" href="#projects">View Projects →</a>
-            <a class="btn btn-secondary" href="https://github.com/rithisen99" target="_blank">GitHub</a>
-            <a class="btn btn-secondary" href="mailto:rithesen99@gmail.com">Email Me</a>
+            <a class="btn btn-primary magnetic" href="#projects">View Projects <span>→</span></a>
+            <a class="btn btn-secondary magnetic" href="https://github.com/rithisen99" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-secondary magnetic" href="mailto:rithesen99@gmail.com">Email Me</a>
           </div>
 
           <div class="hero-stats">
-            <div class="stat"><strong>3+</strong><span>Years BI / MIS</span></div>
-            <div class="stat"><strong>10+</strong><span>Report Types</span></div>
-            <div class="stat"><strong>4+</strong><span>Databases</span></div>
-            <div class="stat"><strong>Banking</strong><span>Domain Focus</span></div>
+            <div class="stat reveal"><strong data-count="3">0</strong><span>Years BI / MIS</span></div>
+            <div class="stat reveal"><strong data-count="10">0</strong><span>Report Types</span></div>
+            <div class="stat reveal"><strong data-count="4">0</strong><span>Databases</span></div>
+            <div class="stat reveal"><strong>Banking</strong><span>Domain Focus</span></div>
           </div>
         </div>
 
-        <aside class="profile-card reveal">
+        <aside class="profile-card reveal tilt-card">
           <div class="profile-inner">
-            <div class="terminal-top">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            </div>
-
-            <div class="avatar">SR</div>
+            <div class="terminal-top"><span></span><span></span><span></span></div>
+            <div class="avatar-ring"><div class="avatar">SR</div></div>
             <h2>Sam Rithisen</h2>
             <div class="profile-role">Senior Officer, Data Analytics</div>
+            <p class="profile-summary">Focused on reliable reporting, clean data flow, automation, and modern data platform design.</p>
 
             <div class="info-list">
-              <div class="info-row"><span>Industry</span><span>Banking & Finance</span></div>
-              <div class="info-row"><span>Focus</span><span>Data Engineering / BI</span></div>
-              <div class="info-row"><span>Location</span><span>Phnom Penh, Cambodia</span></div>
-              <div class="info-row"><span>Email</span><span>rithesen99@gmail.com</span></div>
+              <div class="info-row"><span>Industry</span><strong>Banking & Finance</strong></div>
+              <div class="info-row"><span>Focus</span><strong>BI / Data Engineering</strong></div>
+              <div class="info-row"><span>Location</span><strong>Phnom Penh</strong></div>
+              <div class="info-row"><span>Email</span><strong>rithesen99@gmail.com</strong></div>
             </div>
 
             <div class="code-card">
-              <b>current_focus</b> = ["Python ETL", "Data Warehouse", "CDC Streaming", "Power BI"]
+              <span class="code-key">current_focus</span> = ["Python ETL", "Data Warehouse", "CDC Streaming", "Power BI"]
             </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="eyebrow">01 / About</div>
-            <h2 class="section-title">Turning banking data into trusted insight.</h2>
-          </div>
-          <p class="section-desc">
-            I work across reporting, data warehouse support, ETL automation,
-            dashboarding, and real-time data platform learning.
-          </p>
+          <div><div class="eyebrow">01 / About</div><h2 class="section-title">Turning complex banking data into clear business insight.</h2></div>
+          <p class="section-desc">I combine banking domain knowledge with practical data engineering, reporting automation, and BI development.</p>
         </div>
 
         <div class="about-grid">
           <div class="about-card glass reveal">
-            <p>
-              I am a Data Analytics professional with hands-on experience in banking
-              and financial data systems. My work covers SQL reporting, BI dashboards,
-              regulatory reporting, data cleaning, and automation.
-            </p>
-            <p>
-              I enjoy building practical solutions that reduce manual work,
-              improve report accuracy, and make data easier for business teams to use.
-            </p>
-            <p>
-              My current learning focus is modern data engineering: CDC, Kafka,
-              Debezium, Spark Streaming, Docker, and data warehouse architecture.
-            </p>
+            <p>I am a Data Analytics professional with hands-on experience in banking and financial data systems.</p>
+            <p>My work covers SQL reporting, BI dashboards, regulatory reporting, data cleaning, reconciliation, and automation.</p>
+            <p>I enjoy building practical solutions that reduce manual work, improve report accuracy, and make data easier for business teams to use.</p>
           </div>
 
           <div class="focus-grid reveal">
-            <div class="focus-item"><span>🏦</span> Banking Data & Regulatory Reporting</div>
-            <div class="focus-item"><span>🗄️</span> Data Warehouse & SQL Optimization</div>
-            <div class="focus-item"><span>⚙️</span> Python ETL & Process Automation</div>
-            <div class="focus-item"><span>📊</span> Power BI / Oracle BI Dashboards</div>
-            <div class="focus-item"><span>🔄</span> CDC Streaming with Kafka & Debezium</div>
+            <div class="focus-item"><span>🏦</span><b>Banking Data</b><small>Core banking, CBC, MIS, regulatory reporting</small></div>
+            <div class="focus-item"><span>🗄️</span><b>Data Warehouse</b><small>SQL optimization, staging, marts, reporting tables</small></div>
+            <div class="focus-item"><span>⚙️</span><b>Automation</b><small>Python ETL, file loading, validation, scheduling</small></div>
+            <div class="focus-item"><span>🔄</span><b>Streaming</b><small>Kafka, Debezium, CDC, Spark learning projects</small></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section id="skills">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="eyebrow">02 / Skills</div>
-            <h2 class="section-title">Technical toolkit</h2>
-          </div>
-          <p class="section-desc">
-            A practical stack for enterprise reporting, analytics engineering,
-            and banking data pipelines.
-          </p>
+          <div><div class="eyebrow">02 / Skills</div><h2 class="section-title">Technical toolkit</h2></div>
+          <p class="section-desc">A practical stack for enterprise reporting, analytics engineering, and banking data pipelines.</p>
         </div>
 
         <div class="skills-grid">
-          <div class="skill-card reveal">
-            <div class="skill-icon">🗄️</div>
-            <h3>Databases</h3>
-            <div class="tags">
-              <span class="tag hot">SQL Server</span>
-              <span class="tag hot">Oracle</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">MySQL</span>
-              <span class="tag">PL/SQL</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">⚙️</div>
-            <h3>Data Engineering</h3>
-            <div class="tags">
-              <span class="tag hot">Python</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">SSIS</span>
-              <span class="tag">Talend</span>
-              <span class="tag">Docker</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">📊</div>
-            <h3>BI & Reporting</h3>
-            <div class="tags">
-              <span class="tag hot">Power BI</span>
-              <span class="tag">Oracle BI</span>
-              <span class="tag">BI Publisher</span>
-              <span class="tag">Excel</span>
-              <span class="tag">MIS</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-icon">🔄</div>
-            <h3>Streaming</h3>
-            <div class="tags">
-              <span class="tag">Kafka</span>
-              <span class="tag">Debezium</span>
-              <span class="tag">Spark</span>
-              <span class="tag">CDC</span>
-              <span class="tag">Log-based ETL</span>
-            </div>
-          </div>
+          <div class="skill-card reveal tilt-card"><div class="skill-icon">🗄️</div><h3>Databases</h3><div class="tags"><span class="tag hot">SQL Server</span><span class="tag hot">Oracle</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">PL/SQL</span></div></div>
+          <div class="skill-card reveal tilt-card"><div class="skill-icon">⚙️</div><h3>Data Engineering</h3><div class="tags"><span class="tag hot">Python</span><span class="tag">Pandas</span><span class="tag">SSIS</span><span class="tag">Docker</span><span class="tag">ETL</span></div></div>
+          <div class="skill-card reveal tilt-card"><div class="skill-icon">📊</div><h3>BI & Reporting</h3><div class="tags"><span class="tag hot">Power BI</span><span class="tag">Oracle BI</span><span class="tag">BI Publisher</span><span class="tag">Excel</span><span class="tag">MIS</span></div></div>
+          <div class="skill-card reveal tilt-card"><div class="skill-icon">🔄</div><h3>Streaming</h3><div class="tags"><span class="tag">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">CDC</span><span class="tag">Log-based ETL</span></div></div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="eyebrow">03 / Projects</div>
-            <h2 class="section-title">Featured work</h2>
-          </div>
-          <p class="section-desc">
-            Projects selected to match your target profile: Data Engineer,
-            BI Developer, and Banking Data Specialist.
-          </p>
+          <div><div class="eyebrow">03 / Projects</div><h2 class="section-title">Featured work</h2></div>
+          <p class="section-desc">Projects selected to match Data Engineer, BI Developer, and Banking Data Specialist profiles.</p>
         </div>
 
         <div class="projects-grid">
-          <article class="project-card reveal">
-            <div class="project-meta"><span>01 / BI Reporting</span><span>Banking</span></div>
-            <h3>Banking MIS & BI Reporting</h3>
-            <p>
-              Designed and maintained SQL-driven MIS reports and dashboards for banking
-              operations, branch performance, loans, deposits, and management reporting.
-            </p>
-            <div class="impact">Impact: faster access to reliable business reports and better decision support.</div>
-            <div class="tags">
-              <span class="tag hot">SQL Server</span><span class="tag">Oracle</span>
-              <span class="tag">Power BI</span><span class="tag">Oracle BI</span>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-meta"><span>02 / Compliance</span><span>CBC / NBC</span></div>
-            <h3>Regulatory Reporting Automation</h3>
-            <p>
-              Prepared and automated regulatory reporting workflows with data validation,
-              reconciliation logic, exception checking, and repeatable submission processes.
-            </p>
-            <div class="impact">Impact: reduced manual work and improved report consistency for compliance teams.</div>
-            <div class="tags">
-              <span class="tag hot">SQL</span><span class="tag">Python</span>
-              <span class="tag">Excel</span><span class="tag">Validation</span>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-meta"><span>03 / Automation</span><span>ETL</span></div>
-            <h3>Python ETL Loader</h3>
-            <p>
-              Built Python scripts to read Excel/CSV files, clean columns, validate required
-              fields, batch insert into SQL Server, and log errors for easier maintenance.
-            </p>
-            <div class="impact">Impact: replaced repetitive manual uploads with controlled automated loading.</div>
-            <div class="tags">
-              <span class="tag hot">Python</span><span class="tag">Pandas</span>
-              <span class="tag">pyodbc</span><span class="tag">SQL Server</span>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-meta"><span>04 / Modern Data</span><span>CDC</span></div>
-            <h3>Real-Time CDC Streaming Pipeline</h3>
-            <p>
-              Designed a CDC architecture to stream database changes from Oracle / SQL Server
-              using Debezium, Kafka, Spark Streaming, and Docker-based environments.
-            </p>
-            <div class="impact">Impact: supports near real-time analytics and future data platform modernization.</div>
-            <div class="tags">
-              <span class="tag hot">Kafka</span><span class="tag">Debezium</span>
-              <span class="tag">Spark</span><span class="tag">Docker</span>
-            </div>
-          </article>
+          <article class="project-card reveal tilt-card"><div class="project-meta"><span>01 / BI Reporting</span><span>Banking</span></div><h3>Banking MIS & BI Reporting</h3><p>Designed and maintained SQL-driven MIS reports and dashboards for banking operations, branch performance, loans, deposits, and management reporting.</p><div class="impact">Impact: faster access to reliable reports and better decision support.</div><div class="tags"><span class="tag hot">SQL Server</span><span class="tag">Oracle</span><span class="tag">Power BI</span><span class="tag">Oracle BI</span></div></article>
+          <article class="project-card reveal tilt-card"><div class="project-meta"><span>02 / Compliance</span><span>CBC / NBC</span></div><h3>Regulatory Reporting Automation</h3><p>Prepared and automated regulatory reporting workflows with validation, reconciliation logic, exception checking, and repeatable submission processes.</p><div class="impact">Impact: reduced manual work and improved report consistency.</div><div class="tags"><span class="tag hot">SQL</span><span class="tag">Python</span><span class="tag">Excel</span><span class="tag">Validation</span></div></article>
+          <article class="project-card reveal tilt-card"><div class="project-meta"><span>03 / Automation</span><span>ETL</span></div><h3>Python ETL Loader</h3><p>Built Python scripts to read Excel/CSV files, clean columns, validate required fields, batch insert into SQL Server, and log errors for maintenance.</p><div class="impact">Impact: replaced repetitive manual uploads with controlled automated loading.</div><div class="tags"><span class="tag hot">Python</span><span class="tag">Pandas</span><span class="tag">pyodbc</span><span class="tag">SQL Server</span></div></article>
+          <article class="project-card reveal tilt-card"><div class="project-meta"><span>04 / Modern Data</span><span>CDC</span></div><h3>Real-Time CDC Streaming Pipeline</h3><p>Designed a CDC architecture to stream database changes from Oracle / SQL Server using Debezium, Kafka, Spark Streaming, and Docker.</p><div class="impact">Impact: supports near real-time analytics and data platform modernization.</div><div class="tags"><span class="tag hot">Kafka</span><span class="tag">Debezium</span><span class="tag">Spark</span><span class="tag">Docker</span></div></article>
         </div>
 
         <div class="architecture glass reveal">
           <div class="eyebrow">CDC Architecture Example</div>
           <div class="flow">
-            <div class="node">Oracle / SQL Server<br><small>Source DB</small></div>
-            <div class="arrow">→</div>
-            <div class="node">Debezium<br><small>CDC Connector</small></div>
-            <div class="arrow">→</div>
-            <div class="node">Kafka<br><small>Message Broker</small></div>
-            <div class="arrow">→</div>
-            <div class="node">Spark Streaming<br><small>Processing</small></div>
-            <div class="arrow">→</div>
-            <div class="node">Data Warehouse<br><small>Analytics Store</small></div>
-            <div class="arrow">→</div>
-            <div class="node">Power BI<br><small>Dashboard</small></div>
+            <div class="node">Oracle / SQL Server<small>Source DB</small></div><div class="arrow">→</div>
+            <div class="node">Debezium<small>CDC Connector</small></div><div class="arrow">→</div>
+            <div class="node">Kafka<small>Message Broker</small></div><div class="arrow">→</div>
+            <div class="node">Spark Streaming<small>Processing</small></div><div class="arrow">→</div>
+            <div class="node">Data Warehouse<small>Analytics Store</small></div><div class="arrow">→</div>
+            <div class="node">Power BI<small>Dashboard</small></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="eyebrow">04 / Experience</div>
-            <h2 class="section-title">Professional journey</h2>
-          </div>
-          <p class="section-desc">
-            Experience across MIS reporting, BI development, data analytics,
-            system support, and banking data operations.
-          </p>
+          <div><div class="eyebrow">04 / Experience</div><h2 class="section-title">Professional journey</h2></div>
+          <p class="section-desc">Experience across MIS reporting, BI development, data analytics, system support, and banking data operations.</p>
         </div>
 
         <div class="timeline">
-          <div class="timeline-card reveal">
-            <div class="time">Oct 2025 — Present</div>
-            <div>
-              <h3>Senior Officer, Data Analytics</h3>
-              <div class="company">SBI Ly Hour Bank Plc.</div>
-              <p>Develop MIS reports, BI dashboards, regulatory reports, data warehouse support, process documentation, and reporting automation.</p>
-            </div>
-          </div>
-
-          <div class="timeline-card reveal">
-            <div class="time">Apr 2023 — Sep 2025</div>
-            <div>
-              <h3>Officer, Business Intelligence</h3>
-              <div class="company">AMK Microfinance Institution Plc.</div>
-              <p>Built business reports, dashboards, SQL scripts, and explored real-time streaming using Kafka, Debezium, and Spark.</p>
-            </div>
-          </div>
-
-          <div class="timeline-card reveal">
-            <div class="time">Jan 2022 — Mar 2023</div>
-            <div>
-              <h3>Officer, MIS Reporting</h3>
-              <div class="company">SBI Ly Hour Bank Plc.</div>
-              <p>Supported CBS, Mobile, Visa, Bakong, SMS Banking, and CBC reports with SQL, Oracle BI, and reporting operations.</p>
-            </div>
-          </div>
-
-          <div class="timeline-card reveal">
-            <div class="time">Jul 2020 — Dec 2021</div>
-            <div>
-              <h3>Application Support Officer</h3>
-              <div class="company">SBI Ly Hour Bank Plc.</div>
-              <p>Handled application testing, UAT support, documentation, QMS, vendor coordination, and banking application operations.</p>
-            </div>
-          </div>
+          <div class="timeline-card reveal"><div class="time">Oct 2025 — Present</div><div><h3>Senior Officer, Data Analytics</h3><div class="company">SBI Ly Hour Bank Plc.</div><p>Develop MIS reports, BI dashboards, regulatory reports, data warehouse support, process documentation, and reporting automation.</p></div></div>
+          <div class="timeline-card reveal"><div class="time">Apr 2023 — Sep 2025</div><div><h3>Officer, Business Intelligence</h3><div class="company">AMK Microfinance Institution Plc.</div><p>Built business reports, dashboards, SQL scripts, and explored real-time streaming using Kafka, Debezium, and Spark.</p></div></div>
+          <div class="timeline-card reveal"><div class="time">Jan 2022 — Mar 2023</div><div><h3>Officer, MIS Reporting</h3><div class="company">SBI Ly Hour Bank Plc.</div><p>Supported CBS, Mobile, Visa, Bakong, SMS Banking, and CBC reports with SQL, Oracle BI, and reporting operations.</p></div></div>
+          <div class="timeline-card reveal"><div class="time">Jul 2020 — Dec 2021</div><div><h3>Application Support Officer</h3><div class="company">SBI Ly Hour Bank Plc.</div><p>Handled application testing, UAT support, documentation, QMS, vendor coordination, and banking application operations.</p></div></div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
       <div class="container">
         <div class="contact-card glass reveal">
-          <div>
-            <div class="eyebrow">05 / Contact</div>
-            <h2>Let’s build reliable data systems.</h2>
-            <p>Open to Data Engineer, BI Developer, Data Analyst, and banking data platform opportunities.</p>
-            <a href="mailto:rithesen99@gmail.com" class="btn btn-primary">Send Email →</a>
-          </div>
-
+          <div><div class="eyebrow">05 / Contact</div><h2>Let’s build reliable data systems.</h2><p>Open to Data Engineer, BI Developer, Data Analyst, and banking data platform opportunities.</p><a href="mailto:rithesen99@gmail.com" class="btn btn-primary magnetic">Send Email →</a></div>
           <div class="contact-links">
             <a class="contact-link" href="mailto:rithesen99@gmail.com"><strong>Email</strong><span>rithesen99@gmail.com</span></a>
-            <a class="contact-link" href="https://github.com/rithisen99" target="_blank"><strong>GitHub</strong><span>@rithisen99</span></a>
-            <a class="contact-link" href="https://rithisen99.github.io/Portfolio/" target="_blank"><strong>Portfolio</strong><span>GitHub Pages</span></a>
+            <a class="contact-link" href="https://github.com/rithisen99" target="_blank" rel="noopener"><strong>GitHub</strong><span>@rithisen99</span></a>
+            <a class="contact-link" href="https://rithisen99.github.io/Portfolio/" target="_blank" rel="noopener"><strong>Portfolio</strong><span>GitHub Pages</span></a>
             <div class="contact-link"><strong>Location</strong><span>Phnom Penh, Cambodia</span></div>
           </div>
         </div>
@@ -363,10 +189,8 @@
     </section>
   </main>
 
-  <footer>
-    © 2026 Sam Rithisen · Data Engineer & BI Developer · Built with HTML, CSS, JavaScript & GitHub Pages
-  </footer>
-
+  <footer>© 2026 Sam Rithisen · Data Engineer & BI Developer · Built with HTML, CSS, JavaScript & GitHub Pages</footer>
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
   <script src="script.js"></script>
 </body>
 </html>
