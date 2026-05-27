@@ -15,3 +15,6 @@ Modern personal portfolio for GitHub Pages.
 
 ## Optional
 Place your resume file as `resume.pdf` in the same folder so the Resume button works.
+
+## Open 
+https://rithisen99.github.io/Portfolio/
